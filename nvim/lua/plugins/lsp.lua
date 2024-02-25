@@ -105,7 +105,8 @@ return {
       require("mason").setup()
     end,
   },
-  { "williamboman/mason-lspconfig.nvim",
+  {
+    "williamboman/mason-lspconfig.nvim",
     cond = function ()
       return vim.fn.executable('pip') and vim.fn.executable("npm")
     end,

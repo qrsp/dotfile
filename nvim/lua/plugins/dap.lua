@@ -11,9 +11,46 @@ return {
       },
     },
   },
-
   {
     "mfussenegger/nvim-dap",
+    dependencies = {
+      {
+        "rcarriga/nvim-dap-ui",
+        -- stylua: ignore
+        keys = {
+          { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
+          { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
+        },
+        opts = {},
+        config = function(_, opts)
+          local dap = require("dap")
+          local dapui = require("dapui")
+          dapui.setup(opts)
+          -- :h dap-extensions
+          dap.listeners.after.event_initialized["dapui_config"] = function()
+            dapui.open({})
+          end
+        end,
+      },
+      -- virtual text for the debugger
+      {
+        "theHamsta/nvim-dap-virtual-text",
+        opts = {},
+      },
+      {
+        "mfussenegger/nvim-dap-python",
+        -- stylua: ignore
+        keys = {
+          { "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
+          { "<leader>dPc", function() require('dap-python').test_class() end, desc = "Debug Class", ft = "python" },
+        },
+        config = function()
+          local path = require("mason-registry").get_package("debugpy"):get_install_path()
+          require("dap-python").setup(path .. "/venv/bin/python")
+        end,
+      }
+
+    },
     keys = {
       { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = "Breakpoint Condition" },
       { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
@@ -32,40 +69,22 @@ return {
       { "<leader>dt", function() require("dap").terminate() end, desc = "Terminate" },
       { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
     },
-  },
-  {
-    "mfussenegger/nvim-dap-python",
     config = function()
-      -- require('dap-python').setup('C:/Users/504290/AppData/Local/nvim-data/mason/packages/debugpy/venv/Scripts/python')
-      local path = require("mason-registry").get_package("debugpy"):get_install_path()
-      require("dap-python").setup(path .. "/venv/Scripts/python")
+      -- vscode launch.json, see :h dap-launch.json
+      -- [Debug configuration settings](https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings)
+      -- :help dap-python.DebugpyConfig
+      table.insert(require("dap").configurations.python, {
+        type = "python",
+        request = "launch",
+        name = "Module",
+        console = "integratedTerminal",
+        module = function ()
+          local path_without_ext = vim.fn.expand("%:r")
+          local module = string.gsub(path_without_ext, "/", ".")
+          return module
+        end,
+        cwd = "${workspaceFolder}",
+      })
     end,
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    -- stylua: ignore
-    keys = {
-      { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
-      { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
-    },
-    opts = {},
-    config = function(_, opts)
-      local dap = require("dap")
-      local dapui = require("dapui")
-      dapui.setup(opts)
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open({})
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close({})
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close({})
-      end
-    end,
-  },
-  {
-    "theHamsta/nvim-dap-virtual-text",
-    opts = {},
   },
 }

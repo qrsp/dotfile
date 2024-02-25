@@ -3,10 +3,12 @@ return {
     "natecraddock/workspaces.nvim",
     config = function ()
       require("workspaces").setup({
-          hooks = {
-              open_pre = { "SessionManager save_current_session", },
-              open = { "SessionManager load_current_dir_session", },
-          }
+        hooks = {
+          add = { "SessionManager save_current_session", },
+          remove = { "SessionManager delete_session", },
+          open_pre = { "SessionManager save_current_session", },
+          open = { "SessionManager load_current_dir_session", },
+        }
       })
     end,
     dependencies = {

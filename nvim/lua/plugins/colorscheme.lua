@@ -16,12 +16,9 @@ return {
   {
     'navarasu/onedark.nvim',
     cond = SCHEME == 2,
-    priority = 1000,
     config = function()
       require('onedark').setup {
-        highlights = {
-          ["@comment"] = {fg = '#878d99'},
-        }
+        style = 'darker',
       }
       require('onedark').load()
     end,

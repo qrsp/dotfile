@@ -55,9 +55,9 @@ vim.keymap.set({ 'n' }, '<Leader>q', function() vim.cmd('quit') end)
 vim.keymap.set({ 'n' }, 'Q', function() vim.cmd('qa') end)
 vim.keymap.set({ 'n' }, '<Leader>x', function() vim.cmd('xa') end)
 
-vim.keymap.set({ 'n' }, '<Leader>d', function() vim.cmd('bdelete') end)
-vim.keymap.set({ 'n' }, '<Leader>ZZ', function() vim.cmd('xa!') end)
-vim.keymap.set({ 'n' }, '<Leader>ZQ', function() vim.cmd('qa!') end)
+vim.keymap.set({ 'n' }, '<Leader>dd', function() vim.cmd('bdelete') end)
+vim.keymap.set({ 'n' }, '<Leader>zz', function() vim.cmd('xa!') end)
+vim.keymap.set({ 'n' }, '<Leader>zq', function() vim.cmd('qa!') end)
 
 --- edit
 vim.keymap.set({ 'i' }, 'jk', '<Esc>')
@@ -142,6 +142,37 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    },
+  },
+  {
+    -- TODO
+    "tris203/hawtkeys.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function ()
+      require("hawtkeys").setup({})
+    end
+  },
+  {
+    "bfredl/nvim-luadev",
+    cmd = "Luadev",
+  },
+  {
+    "kevinhwang91/nvim-bqf",
+  },
   {
     "miversen33/sunglasses.nvim",
     config = function ()
@@ -237,12 +268,6 @@ require("lazy").setup({
         twilight = { enabled = false }
       }
     }
-  },
-  {
-    "ggandor/leap.nvim",
-    config = function ()
-      require('leap').add_default_mappings()
-    end,
   },
   {
     "jiaoshijie/undotree",

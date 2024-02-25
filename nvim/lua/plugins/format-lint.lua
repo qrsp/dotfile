@@ -3,6 +3,9 @@ vim.diagnostic.config({ virtual_text = { source = true, }, })
 return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    cond = function ()
+      return vim.fn.executable('pip') and vim.fn.executable("npm")
+    end,
     config = function ()
       require('mason-tool-installer').setup {
         ensure_installed = {
