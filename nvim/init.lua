@@ -3,7 +3,6 @@
 --   gcc(nvim-treesitter)
 --   gcc, make(telescope-fzf-native.nvim)
 --   ripgrep(telescope.nvim)
---   [im-select](https://github.com/daipeihust/im-select)
 --   awk(trim_whitespace)
 
 -- -- --
@@ -146,12 +145,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{
-		"keaising/im-select.nvim",
-		config = function()
-			require("im_select").setup({})
-		end,
-	},
 	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
