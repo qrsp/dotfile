@@ -50,22 +50,14 @@ return {
 				},
 				sorting = defaults.sorting,
 				cmp.setup.cmdline({ "/", "?" }, {
-					mapping = cmp.mapping.preset.cmdline({
-						["<CR>"] = {
-							c = cmp.mapping.confirm({ select = true }),
-						},
-					}),
+					mapping = cmp.mapping.preset.cmdline({}),
 					sources = {
 						{ name = "buffer" },
 					},
 				}),
 
 				cmp.setup.cmdline(":", {
-					mapping = cmp.mapping.preset.cmdline({
-						["<CR>"] = {
-							c = cmp.mapping.confirm({ select = true }),
-						},
-					}),
+					mapping = cmp.mapping.preset.cmdline({}),
 					sources = cmp.config.sources({
 						{ name = "path" },
 					}, {

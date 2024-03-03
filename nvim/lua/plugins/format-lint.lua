@@ -37,7 +37,7 @@ return {
 				},
 			})
 			vim.api.nvim_create_user_command("Conform", function()
-				require("conform").format()
+				require("conform").format({timeout_ms = 5000})
 			end, {})
 		end,
 	},
