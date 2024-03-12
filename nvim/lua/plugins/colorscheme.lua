@@ -14,20 +14,6 @@ local colorscheme = {
 		end,
 	},
 	{
-		"navarasu/onedark.nvim",
-		cond = false,
-		priority = 1000,
-		config = function()
-			require("onedark").setup({
-        -- style = 'cool',
-				highlights = {
-					["@comment"] = { fg = "#878d99" },
-				},
-			})
-			require("onedark").load()
-		end,
-	},
-	{
 		"catppuccin/nvim",
 		cond = false,
 		name = "catppuccin",

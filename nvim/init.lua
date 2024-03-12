@@ -177,15 +177,6 @@ require("lazy").setup({
 		"kevinhwang91/nvim-bqf",
 	},
 	{
-		"miversen33/sunglasses.nvim",
-		config = function()
-			require("sunglasses").setup({
-				filter_percent = 0.20,
-			})
-		end,
-		event = "VeryLazy",
-	},
-	{
 		"echasnovski/mini.align",
 		version = false,
 		config = function()
