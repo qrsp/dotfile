@@ -15,4 +15,16 @@ return {
 			vim.g.mkdp_page_title = "${name}"
 		end,
 	},
+  {
+    'MeanderingProgrammer/markdown.nvim',
+    dependencies = {
+        'nvim-treesitter/nvim-treesitter', -- Mandatory
+        'nvim-tree/nvim-web-devicons', -- Optional but recommended
+    },
+    config = function()
+        require('render-markdown').setup({
+          start_enabled = false,
+      })
+    end,
+  },
 }

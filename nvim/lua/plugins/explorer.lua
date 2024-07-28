@@ -8,10 +8,16 @@ return {
 					show_hidden = true,
 				},
 				delete_to_trash = true,
+
+        -- oil-vcs-status
+        win_options = {
+            signcolumn = "number",
+        },
 			})
 			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 		end,
 	},
+  { "SirZenith/oil-vcs-status" },
 	{
 		"nvim-tree/nvim-tree.lua",
 		keys = { "<F2>" },

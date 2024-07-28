@@ -69,6 +69,8 @@ vim.keymap.set({ "i" }, "jk", "<Esc>")
 vim.keymap.set({ "i" }, "kj", "<Esc>")
 vim.keymap.set({ "i" }, "<A-o>", "<C-o>o")
 vim.keymap.set({ "i" }, "<A-O>", "<C-o>O")
+-- Avoid inputting unintended characters on Windows by using glazeWM
+vim.keymap.set({ "i" }, "<F20>", "<NOP>")
 
 vim.keymap.set({ "v" }, "I", function()
 	if vim.api.nvim_get_mode().mode == "V" then

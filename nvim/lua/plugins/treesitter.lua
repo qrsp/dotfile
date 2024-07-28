@@ -33,6 +33,8 @@ return {
 				"vim",
 				"vimdoc",
 				"yaml",
+        "sql",
+        "powershell"
 			},
 			incremental_selection = {
 				enable = true,
@@ -78,4 +80,5 @@ return {
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
 	},
+  { "hiphish/rainbow-delimiters.nvim" },
 }
