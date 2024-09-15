@@ -9,6 +9,11 @@ local colorscheme = {
 				on_colors = function(colors)
 					colors.comment = "#888fac"
 				end,
+        on_highlights = function(hl, c)
+          hl["@markup.strong"]= {
+            fg = c.warning,
+          }
+        end,
 			})
 			vim.cmd([[colorscheme tokyonight-night]])
 		end,
@@ -44,6 +49,8 @@ local colorscheme = {
       vim.g.sonokai_style = styless[math.random(5)]
       vim.g.sonokai_better_performance = 1
 			vim.cmd.colorscheme("sonokai")
+      vim.api.nvim_set_hl(0, 'TSStrong', { link = 'markdownH1' })
+
     end
 	},
 }

@@ -34,7 +34,7 @@ return {
 				"vimdoc",
 				"yaml",
         "sql",
-        "powershell"
+        "powershell",
 			},
 			incremental_selection = {
 				enable = true,

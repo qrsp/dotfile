@@ -22,7 +22,7 @@ return {
 				formatters_by_ft = {
 					lua = { "stylua" },
 					sql = { "sqlfluff" },
-					markdown = { "markdownlint", "injected" },
+					markdown = { "markdownlint" },
 					javascript = { "prettierd" },
 					json = { "prettierd" },
 					jsonc = { "prettierd" },

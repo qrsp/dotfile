@@ -148,6 +148,19 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{
+		"MagicDuck/grug-far.nvim",
+		cmd = "GrugFar",
+		config = function()
+			require("grug-far").setup({
+				searchOnInsertLeave = true,
+				transient = true,
+				prefills = {
+					paths = vim.fn.expand("%"),
+				},
+			})
+		end,
+	},
+	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
 		opts = {},
