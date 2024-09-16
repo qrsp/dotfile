@@ -97,6 +97,8 @@ return {
 			lspconfig.psalm.setup({
 				cmd = { vim.fn.stdpath("data") .. "/mason/bin/psalm-language-server.cmd" },
 			})
+
+      lspconfig.markdown_oxide.setup{}
 		end,
 	},
   {
@@ -133,6 +135,7 @@ return {
 				"pyright",
 				"intelephense",
 				-- "psalm", -- install manually
+        "markdown_oxide",
 			},
 		},
 	},
