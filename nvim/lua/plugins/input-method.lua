@@ -4,8 +4,8 @@ return {
     cond = function() return jit.os == "Windows" end,
     event = "VeryLazy",
     init = function()
-      vim.g.imselect_insert_engines = { 0x0404 }
-      vim.g.imselect_normal_engines = { 0x0409 }
+      vim.g.imselect_insert_engines = { 134481924 }
+      vim.g.imselect_normal_engines = { 67699721 }
       vim.api.nvim_create_user_command( "IM", ":call imselect#toggle('n')", {})
     end,
   },

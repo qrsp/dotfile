@@ -48,20 +48,11 @@ return {
 
 			lspconfig.pyright.setup({})
 
-			local on_attach = function(client, bufnr)
-				if client.name == "ruff_lsp" then
-					-- Disable hover in favor of Pyright
-					client.server_capabilities.hoverProvider = false
-				end
-			end
-
-			require("lspconfig").ruff_lsp.setup({
-				on_attach = on_attach,
-			})
+			lspconfig.ruff.setup({})
 
 			-- for Neovim
 			-- [lua_ls config.md](https://github.com/LuaLS/lua-language-server/blob/master/doc/en-us/config.md)
-			require("lspconfig").lua_ls.setup({
+			lspconfig.lua_ls.setup({
 				on_init = function(client)
 					local path = client.workspace_folders[1].name
 					if
@@ -130,7 +121,7 @@ return {
 				"lua_ls",
 				-- pip
 				"pylsp",
-				"ruff_lsp",
+				"ruff",
 				-- npm
 				"pyright",
 				"intelephense",

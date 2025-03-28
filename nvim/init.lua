@@ -30,7 +30,7 @@ vim.o.smartcase = true
 --- edit
 vim.o.inccommand = "split" -- Preview substitute
 vim.o.whichwrap = "h,l,<,>,~" -- Allow move to the previous/next line
-vim.o.fileencodings = "utf-8,cp950,utf-16le"
+vim.o.fileencodings = "utf-8,cp950,utf-16le,iso-2022-jp,euc-jp,sjis"
 
 vim.o.expandtab = true
 vim.o.shiftwidth = 4
@@ -156,6 +156,7 @@ require("lazy").setup({
 				transient = true,
 				prefills = {
 					paths = vim.fn.expand("%"),
+          flags = "--ignore-case",
 				},
 			})
 		end,

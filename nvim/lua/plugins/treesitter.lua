@@ -35,6 +35,7 @@ return {
 				"yaml",
         "sql",
         "powershell",
+        "xml",
 			},
 			incremental_selection = {
 				enable = true,
