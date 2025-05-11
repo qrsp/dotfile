@@ -13,25 +13,30 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
-			{
-				"rcarriga/nvim-dap-ui",
-        "nvim-neotest/nvim-nio",
+      {
+        "rcarriga/nvim-dap-ui",
+        dependencies = { "nvim-neotest/nvim-nio" },
         -- stylua: ignore
         keys = {
           { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
           { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
         },
-				opts = {},
-				config = function(_, opts)
-					local dap = require("dap")
-					local dapui = require("dapui")
-					dapui.setup(opts)
-					-- :h dap-extensions
-					dap.listeners.after.event_initialized["dapui_config"] = function()
-						dapui.open({})
-					end
-				end,
-			},
+        opts = {},
+        config = function(_, opts)
+          local dap = require("dap")
+          local dapui = require("dapui")
+          dapui.setup(opts)
+          dap.listeners.after.event_initialized["dapui_config"] = function()
+            dapui.open({})
+          end
+          dap.listeners.before.event_terminated["dapui_config"] = function()
+            dapui.close({})
+          end
+          dap.listeners.before.event_exited["dapui_config"] = function()
+            dapui.close({})
+          end
+        end,
+      },
 			-- virtual text for the debugger
 			{
 				"theHamsta/nvim-dap-virtual-text",
@@ -45,7 +50,7 @@ return {
           { "<leader>dPc", function() require('dap-python').test_class() end, desc = "Debug Class", ft = "python" },
         },
 				config = function()
-					local path = require("mason-registry").get_package("debugpy"):get_install_path()
+					local path = "$MASON/packages/debugpy"
 					if jit.os == "Linux" then
 						require("dap-python").setup(path .. "/venv/bin/python")
 					else
